@@ -36,7 +36,7 @@ export class CartService {
     this.saveCart();
   }
 
-  // ✅ REQUIRED BY CART PAGE
+  
   increaseQuantity(pizzaId: string): void {
     const item = this.cartItems.find(i => i.id === pizzaId);
     if (item) {
@@ -45,7 +45,7 @@ export class CartService {
     }
   }
 
-  // ✅ REQUIRED BY CART PAGE
+ 
   decreaseQuantity(pizzaId: string): void {
     const item = this.cartItems.find(i => i.id === pizzaId);
     if (!item) return;
