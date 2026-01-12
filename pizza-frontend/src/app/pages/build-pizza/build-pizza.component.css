@@ -1,0 +1,98 @@
+.build-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Top info text */
+.info-text {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #555;
+  margin-bottom: 8px;
+  white-space: nowrap;      /* 👈 single line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Main card */
+.ingredient-card {
+  width: 420px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  padding-bottom: 12px;   
+}
+
+
+/* Each row */
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 70px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eaeaea;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+
+/* Image */
+.img-col {
+  display: flex;
+  justify-content: center;
+}
+
+.ingredient-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+/* Name */
+.name-col {
+  font-size: 13px;
+}
+
+/* Price */
+.price-col {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Add section */
+.add-col {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.add-col span {
+  color: #f4b400;
+  cursor: pointer;
+}
+
+/* Total */
+.total-row {
+  padding: 10px;
+  font-size: 14px;
+  color: #1a237e;
+}
+
+/* Button */
+.build-btn {
+  width: 100%;
+  background: #000;
+  color: #f4b400;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 8px; 
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);      
+}
+

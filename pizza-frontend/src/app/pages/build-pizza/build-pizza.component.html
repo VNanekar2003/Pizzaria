@@ -1,0 +1,59 @@
+<div class="build-wrapper">
+
+  <p class="info-text">
+    Pizzeria now gives you options to build your own pizza.
+    Customize your pizza by choosing ingredients from the list given below
+  </p>
+
+  <div class="ingredient-card">
+
+    @for (ingredient of ingredients; track ingredient.id) {
+      <div class="ingredient-row">
+
+        <!-- IMAGE -->
+        <div class="img-col">
+          <img
+            [src]="ingredient.image"
+            [alt]="ingredient.iname"
+            class="ingredient-img"
+          />
+        </div>
+
+        <!-- NAME -->
+        <div class="name-col">
+          {{ ingredient.tname }}
+        </div>
+
+        <!-- PRICE -->
+        <div class="price-col">
+          ₹{{ ingredient.price }}.00
+        </div>
+
+        <!-- ADD -->
+        <div class="add-col">
+          <input
+            type="checkbox"
+            (change)="toggleIngredient(ingredient, $event)"
+          />
+          <span>Add</span>
+        </div>
+
+      </div>
+    }
+
+    <!-- TOTAL -->
+    <div class="total-row">
+      Total Cost : <strong>₹{{ totalCost }}</strong>
+    </div>
+
+    <!-- BUTTON -->
+    <button
+      type="button"
+      class="build-btn"
+      (click)="buildPizza()"
+    >
+      Build Ur Pizza
+    </button>
+
+  </div>
+</div>

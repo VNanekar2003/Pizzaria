@@ -1,0 +1,73 @@
+<div class="order-container">
+  <h1>Order Pizza</h1>
+
+  <div class="pizza-grid">
+
+    @for (pizza of pizzas; track pizza.id) {
+      <div class="pizza-card">
+
+        <!-- LEFT -->
+        <div class="col-name">
+          <h3 [innerHTML]="pizza.name.replace(' ', '<br>')"></h3>
+
+          <span
+            class="food-type"
+            [ngClass]="pizza.type === 'veg' ? 'veg' : 'non-veg'"
+          ></span>
+
+          <p class="price">₹ {{ pizza.price }}</p>
+        </div>
+
+        <!-- CENTER -->
+        <div class="col-details">
+          <p class="desc">{{ pizza.description }}</p>
+
+          <!-- INGREDIENTS -->
+          @if (pizza.ingredients?.length) {
+            <p>
+              <strong>Ingredients :</strong>
+              @for (ing of pizza.ingredients; track ing.id; let last = $last) {
+                {{ ing.iname }}@if (!last) {, }
+              }
+            </p>
+          }
+
+          <!-- TOPPINGS -->
+          @if (pizza.topping?.length) {
+            <p>
+              <strong>Toppings :</strong>
+              @for (top of pizza.topping; track top.id; let last = $last) {
+                {{ top.tname }}@if (!last) {, }
+              }
+            </p>
+          }
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-action">
+          <img [src]="pizza.image" [alt]="pizza.name">
+
+          @if (!isPizzaInCart(pizza)) {
+            <button
+              class="add-btn"
+              (click)="addToCart(pizza)"
+            >
+              Add to Cart
+            </button>
+          }
+
+          @if (isPizzaInCart(pizza)) {
+            <button
+              class="remove-btn"
+              (click)="removeFromCart(pizza)"
+            >
+              Remove
+            </button>
+          }
+        </div>
+
+      </div>
+    }
+
+  </div>
+</div>

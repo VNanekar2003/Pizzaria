@@ -1,0 +1,84 @@
+<div class="cart-container">
+
+  <!-- LEFT: CART LIST -->
+  <div class="cart-left">
+    <h2>My Cart</h2>
+
+    @for (item of cartService.getCartItems(); track item.id) {
+      <div class="cart-row">
+
+        <img
+          [src]="item.image || '/custom-pizza.png'"
+          [alt]="item.name"
+        >
+
+        <span
+          class="food-icon"
+          [ngClass]="item.type === 'veg' ? 'veg' : 'non-veg'"
+        >
+          <span class="dot"></span>
+        </span>
+
+        <div class="details">
+          <h4>{{ item.name }}</h4>
+          <p>₹{{ item.price }}</p>
+        </div>
+
+        <div class="qty">
+          <button (click)="decrease(item.id)">-</button>
+          <span>{{ item.quantity ?? 1 }}</span>
+          <button (click)="increase(item.id)">+</button>
+        </div>
+
+        <div class="amount">
+          ₹{{ (item.price * (item.quantity ?? 1)) | number:'1.2-2' }}
+        </div>
+
+        <button
+          class="delete"
+          (click)="removeItem(item.id)"
+        >
+          🗑
+        </button>
+
+      </div>
+    }
+
+    <div class="sub-total">
+      Sub Total : ₹ {{ cartService.getTotalPrice() | number:'1.2-2' }}
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="cart-right-wrapper">
+
+    <div class="cart-right">
+      <h3>The total amount of</h3>
+
+      <div class="summary-row">
+        <span>Pizza</span>
+        <span>₹ {{ cartService.getTotalPrice() | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Ingredients</span>
+        <span>₹ 53.00</span>
+      </div>
+
+      <hr>
+
+      <div class="summary-total">
+        Total : ₹ {{ (cartService.getTotalPrice() + 53) | number:'1.2-2' }}
+      </div>
+    </div>
+
+    @if (cartService.getCartItems().length > 0) {
+      <div class="actions">
+        <button class="pay-btn" (click)="payNow()">Pay</button>
+        <button class="clear-btn" (click)="clearCart()">Clear</button>
+      </div>
+    }
+
+  </div>
+
+</div>
